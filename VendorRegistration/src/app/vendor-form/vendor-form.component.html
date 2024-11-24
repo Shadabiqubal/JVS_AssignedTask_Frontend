@@ -1,0 +1,158 @@
+<div class="vendor-registration">
+  <h2>Vendor Registration</h2>
+  <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Code</mat-label>
+          <input matInput formControlName="code" [disabled]="true" />
+        </mat-form-field>
+
+
+        <div class="field">
+          <mat-label style="color: #575757;">Status<span class="required-star">*</span></mat-label>
+          <div class="status-toggle">
+            <div class="status-option" [class.active]="vendorForm.get('status')?.value === true"
+              (click)="toggleStatus(true)">
+              Active
+            </div>
+            <div class="status-option" [class.active]="vendorForm.get('status')?.value === false"
+              (click)="toggleStatus(false)">
+              Inactive
+            </div>
+          </div>
+        </div>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Vendor Type</mat-label>
+          <mat-select formControlName="vendorTypeId" required>
+            <mat-option *ngFor="let type of vendorTypes" [value]="type.id">
+              {{ type.type }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="vendorForm.get('vendorTypeId')?.hasError('required')">
+            Vendor Type is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>GST Number</mat-label>
+          <input matInput formControlName="gstNumber" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required />
+          <mat-error *ngIf="vendorForm.get('name')?.hasError('required')">
+            Name is required.
+          </mat-error>
+          <mat-error *ngIf="vendorForm.get('name')?.hasError('numericNotAllowed')">
+            Name cannot contain numbers.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="vendorForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber" minlength="10" maxlength="10" />
+          <mat-error *ngIf="vendorForm.get('phoneNumber')?.hasError('alphanumericNotAllowed')">
+            Phone number cannot contain alphabetic characters.
+          </mat-error>
+          <mat-error *ngIf="vendorForm.get('phoneNumber')?.hasError('minlength')">
+            Phone number must be at least 10 digits.
+          </mat-error>
+          <mat-error *ngIf="vendorForm.get('phoneNumber')?.hasError('maxlength')">
+            Phone number cannot exceed 10 digits.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Address Line 1</mat-label>
+          <input matInput formControlName="addressLine1" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Address Line 2</mat-label>
+          <input matInput formControlName="addressLine2" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Address Line 3</mat-label>
+          <input matInput formControlName="addressLine3" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="countryId" (selectionChange)="onCountryChange($event.value)">
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>State</mat-label>
+          <mat-select formControlName="stateId" (selectionChange)="onStateChange($event.value)">
+            <mat-option *ngFor="let state of states" [value]="state.id">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <mat-select formControlName="cityId">
+            <mat-option *ngFor="let city of cities" [value]="city.id">
+              {{ city.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>PIN Code</mat-label>
+          <input matInput formControlName="pinCode" minlength="5" maxlength="6" />
+          <mat-error *ngIf="vendorForm.get('pinCode')?.hasError('pattern')">
+            PIN Code must be 5 to 6 digits.
+          </mat-error>
+          <mat-error *ngIf="vendorForm.get('pinCode')?.hasError('alphanumericNotAllowed')">
+            PIN Code cannot contain alphabetic characters.
+          </mat-error>
+        </mat-form-field>
+        <mat-label></mat-label>
+        <mat-label></mat-label>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Remarks</mat-label>
+          <textarea matInput formControlName="remarks"></textarea>
+        </mat-form-field>
+        <mat-label></mat-label>
+        <mat-label></mat-label>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button style="background-color: #297F87;color: #fff;" type="submit">Save</button>
+        <button mat-raised-button type="button" (click)="clear()">Clear</button>
+        <button mat-raised-button color="secondary" type="button" (click)="goBack()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

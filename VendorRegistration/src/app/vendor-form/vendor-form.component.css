@@ -1,0 +1,90 @@
+.vendor-registration {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vendor-registration h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #297F87;
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.remarks-field {
+  grid-column: span 2;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+button {
+  min-width: 120px;
+}
+
+
+.field {
+  margin-right: 16px;
+  width: 22%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+mat-slide-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 16px;
+}
+
+
+.status-toggle {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.status-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.status-option.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.status-option:not(.active):hover {
+  background-color: #dcdcdc;
+}
+
+.required-star {
+  font-size: 0.8em; 
+  color: #717171;  
+}
